@@ -7,25 +7,38 @@ The code location is: [Click Here to view](https://github.com/jaidevkler/data-so
 ## Files
 * retrieve_movie_data.ipynb [Click here to view](https://github.com/jaidevkler/data-sourcing-challenge/blob/main/retrieve_movie_data.ipynb)<br />
 * README.md [Click here to view](https://github.com/jaidevkler/data-sourcing-challenge/blob/main/README.md)<br />
-* merged_index.csv [Click here to view](https://github.com/jaidevkler/data-sourcing-challenge/blob/main/merged_index.csv)<br />
+* merged_df.csv [Click here to view](https://github.com/jaidevkler/data-sourcing-challenge/blob/main/merged_df.csv)<br />
 
 ## How to run the program
 Download the files and then use jupyter notebook or jupyter lab to open the retrieve_movie_data.ipynb file.
 
 ## Program
 ### 1. Access the New York Times API
-* The program first prepares a url with the API key, query, sort filter, field list and data range.
-* This url is used to get data from the NYT server. The data is then converted into a data frame using the json_normailize() function.
-* A list of unique writers is extracted and saved from the 'byline.orginal' column of the data frame.
+* The program first prepares a query url with the base url, API key, query, sort filter, field list and data range.
+* Since the NYT API limits results to 10 per page a for loop is used to retrive 200 results over 20 pages.
+* The url is then further modified to include the page number. This url is used to get review data from the NYT server.
+* Another loop is used to loop through the obtained data to append each review to the review list.
+* The reviews list is then convered into a datafram using json_normalized() function
+* The title is extracted from 'headline.main' column using the lambda function provided.
+* The keywords column is convered to strings using the extract_keywords function() provided.
+* A list of titles is created by using the to_list() function on the 'title' column
 
 ### 2. Access the Movie Database API
-* A for loop is used to loop through the list of unique writers.
-* Within the loop a url is created and used to get 
-
+* A for loop is used to loop through the list of titles.
+* A counter is used in order to make the program sleep for a second after every 50 requests. A message is also printed to let the user know that the program is sleeping.
+* The movie database url is then used to get movies data from the server.
+* Genres, spoken languages and production countries are extracted from the data obtained using list comprehensions. This data is then added to the tmdb_movies_list in a dictionary form along with the other chosen fields.
+* The program prints an error message in case if the data title was not found else prints that it was found.
+* The dictoionary is then converted into a dataframe called tmdb_df
 
 ### 3. Merge and Clean the Data the Export
-
+* The NYT and Movies Dataframes are merged on title using the merge() function.
+* The genres, spoken languages and production countries columns are converted to strings. Box brackets and quotes are removed from the strings.
+* The 'byline.person' column is dropped from the merged dataframe.
+* Any duplicaate rows are dropped from the dataframe
+* The index of the dataframe is then dropped to give us our final dataframe.
+* The dataframe is saved to file called 'merged_df.csv' using the to_csv() function
 
 ## Conclusion
-The assignment shows how different function (concat, groupby, pivot, resample) can be used to combine and sort data to analysis the data for better decision making.
+The assignment shows how to source data from different websites using their API.
 
