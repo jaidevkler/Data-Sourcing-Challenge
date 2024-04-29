@@ -7,7 +7,7 @@ The code location is: [Click Here to view](https://github.com/jaidevkler/data-so
 ## Files
 * retrieve_movie_data.ipynb [Click here to view](https://github.com/jaidevkler/data-sourcing-challenge/blob/main/retrieve_movie_data.ipynb)<br />
 * README.md [Click here to view](https://github.com/jaidevkler/data-sourcing-challenge/blob/main/README.md)<br />
-* merged_df.csv [Click here to view](https://github.com/jaidevkler/data-sourcing-challenge/blob/main/merged_df.csv)<br />
+* nyt_tmdb_df.csv [Click here to view](https://github.com/jaidevkler/data-sourcing-challenge/blob/main/nyt_tmdb_df.csv)<br />
 
 ## How to run the program
 Download the files and then use jupyter notebook or jupyter lab to open the retrieve_movie_data.ipynb file.
@@ -37,7 +37,7 @@ Download the files and then use jupyter notebook or jupyter lab to open the retr
 * The 'byline.person' column is dropped from the merged dataframe.
 * Any duplicaate rows are dropped from the dataframe
 * The index of the dataframe is then dropped to give us our final dataframe.
-* The dataframe is saved to file called 'merged_df.csv' using the to_csv() function
+* The dataframe is saved to file called 'nyt_tmdb_df.csv' using the to_csv() function
 
 ## Conclusion
 The assignment shows how to source data from different websites using their API.
